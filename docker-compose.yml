@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  postgres-databases:
+      image: postgres:latest
+      container_name: postgres_dbs
+      restart: always
+      environment:
+        POSTGRES_USER: blog_admin
+        POSTGRES_PASSWORD: 1234
+        POSTGRES_DB: blog_one
+  api-blog:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres-databases
